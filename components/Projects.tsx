@@ -20,6 +20,7 @@ import p213 from "../assets/projects/project-2/p213.jpg";
 import p31 from "../assets/projects/project-3/p31.jpg";
 import p32 from "../assets/projects/project-3/p32.jpg";
 import p33 from "../assets/projects/project-3/p33.jpg";
+import p34 from "../assets/projects/project-3/p34.jpeg";
 
 import p41 from "../assets/projects/project-4/p41.jpg";
 import p42 from "../assets/projects/project-4/p42.jpg";
@@ -69,7 +70,7 @@ const PROJECTS: Project[] = [
     id: "3",
     title: "Urban International School",
     category: "Institutional",
-    imageUrls: [p31, p32, p33],
+    imageUrls: [p31, p32, p33, p34],
     description:
       "A dynamic educational campus fostering innovation and holistic development within an inspiring architectural setting.",
   },
