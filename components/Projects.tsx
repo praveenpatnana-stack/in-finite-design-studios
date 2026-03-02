@@ -20,7 +20,6 @@ import p213 from "../assets/projects/project-2/p213.jpg";
 import p31 from "../assets/projects/project-3/p31.jpg";
 import p32 from "../assets/projects/project-3/p32.jpg";
 import p33 from "../assets/projects/project-3/p33.jpg";
-import p34 from "../assets/projects/project-3/p34.jpeg";
 
 import p41 from "../assets/projects/project-4/p41.jpg";
 import p42 from "../assets/projects/project-4/p42.jpg";
@@ -70,7 +69,8 @@ const PROJECTS: Project[] = [
     id: "3",
     title: "Urban International School",
     category: "Institutional",
-    imageUrls: [p31, p32, p33, p34],
+    imageUrls: [p31, p32, p33],
+    videoUrl: "https://www.youtube.com/embed/Wg1u9jHF8wA",
     description:
       "A dynamic educational campus fostering innovation and holistic development within an inspiring architectural setting.",
   },
@@ -103,7 +103,6 @@ const PROJECTS: Project[] = [
 const Projects: React.FC<ProjectsProps> = ({ setModalOpen }) => {
   const { isDark } = useContext(ThemeContext);
   const [activeProject, setActiveProject] = useState<Project | null>(null);
-  const [visibleHints, setVisibleHints] = useState<string[]>([]);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -116,13 +115,6 @@ const Projects: React.FC<ProjectsProps> = ({ setModalOpen }) => {
     }
   }, [activeProject, setModalOpen]);
 
-  const showHint = (id: string) => {
-    setVisibleHints((prev) => [...prev, id]);
-    setTimeout(() => {
-      setVisibleHints((prev) => prev.filter((item) => item !== id));
-    }, 3000);
-  };
-
   const scrollNext = () => {
     scrollRef.current?.scrollBy({ left: window.innerWidth, behavior: "smooth" });
   };
@@ -134,58 +126,19 @@ const Projects: React.FC<ProjectsProps> = ({ setModalOpen }) => {
   return (
     <section id="work" className="py-32 px-8 bg-transparent">
       <div className="max-w-7xl mx-auto">
-
         <div className="flex flex-col mb-20">
           <h2 className="text-4xl md:text-6xl font-serif">Works</h2>
           <div className="w-24 h-[1px] bg-[#A4F142]/40 mt-4" />
         </div>
 
         <div className="grid grid-cols-1 gap-24">
-          {PROJECTS.map((project, idx) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              onViewportEnter={() => showHint(project.id)}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1, duration: 0.8 }}
-            >
+          {PROJECTS.map((project) => (
+            <motion.div key={project.id} initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
 
                 <div className="lg:col-span-8 relative">
+                  <div className={`relative rounded-xl border overflow-hidden ${isDark ? "bg-white/5 border-white/5" : "bg-stone-200 border-stone-200 shadow-sm"}`}>
 
-                  <div className={`relative rounded-xl border overflow-hidden ${
-                    isDark
-                      ? "bg-white/5 border-white/5"
-                      : "bg-stone-200 border-stone-200 shadow-sm"
-                  }`}>
-
-                    {/* PREMIUM CURVED SWIPE GESTURE */}
-                  {project.imageUrls.length > 1 &&
-  visibleHints.includes(project.id) && (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="absolute w-full top-6 left-0 flex justify-center z-30 pointer-events-none"
-    >
-      <motion.div
-        animate={{ x: [0, -12, 0] }}
-        transition={{
-          duration: 1.5,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className={`flex items-center gap-4 text-xs md:text-sm uppercase tracking-[0.6em] font-light ${
-          isDark ? "text-white/80" : "text-stone-900/80"
-        }`}
-      >
-        <span className="text-lg md:text-xl">←</span>
-        <span>Swipe</span>
-      </motion.div>
-    </motion.div>
-)}
-                    {/* Maximize */}
                     <button
                       onClick={() => setActiveProject(project)}
                       className="absolute top-4 right-4 z-20 bg-black/60 hover:bg-black text-white rounded-full px-3 py-1 text-sm"
@@ -194,31 +147,34 @@ const Projects: React.FC<ProjectsProps> = ({ setModalOpen }) => {
                     </button>
 
                     <div className="flex overflow-x-auto snap-x snap-mandatory scroll-smooth">
+
                       {project.imageUrls.map((img, i) => (
                         <div key={i} className="min-w-full aspect-[4/5] md:aspect-[16/10] snap-start">
-                          <img
-                            src={img}
-                            alt=""
-                            className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000"
-                          />
+                          <img src={img} className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000"/>
                         </div>
                       ))}
-                    </div>
 
+                      {project.videoUrl && (
+                        <div className="min-w-full aspect-[4/5] md:aspect-[16/10] snap-start bg-black">
+                          <iframe
+                            src={project.videoUrl}
+                            className="w-full h-full"
+                            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                          />
+                        </div>
+                      )}
+
+                    </div>
                   </div>
 
-                  <div className={`mt-6 text-sm leading-relaxed ${
-                    isDark ? "text-white/60" : "text-stone-900/70"
-                  }`}>
+                  <div className={`mt-6 text-sm leading-relaxed ${isDark ? "text-white/60" : "text-stone-900/70"}`}>
                     {project.description}
                   </div>
-
                 </div>
 
                 <div className="lg:col-span-4 lg:sticky lg:top-32">
-                  <span className={`text-xs uppercase tracking-[0.4em] mb-4 block ${
-                    isDark ? "text-[#A4F142]" : "text-stone-900/60 font-bold"
-                  }`}>
+                  <span className={`text-xs uppercase tracking-[0.4em] mb-4 block ${isDark ? "text-[#A4F142]" : "text-stone-900/60 font-bold"}`}>
                     {project.category}
                   </span>
 
@@ -226,9 +182,7 @@ const Projects: React.FC<ProjectsProps> = ({ setModalOpen }) => {
                     {project.title}
                   </h3>
 
-                  <div className={`w-12 h-[1px] mb-8 ${
-                    isDark ? "bg-white/20" : "bg-stone-900/20"
-                  }`} />
+                  <div className={`w-12 h-[1px] mb-8 ${isDark ? "bg-white/20" : "bg-stone-900/20"}`} />
                 </div>
 
               </div>
@@ -237,65 +191,39 @@ const Projects: React.FC<ProjectsProps> = ({ setModalOpen }) => {
         </div>
       </div>
 
-      {/* FULLSCREEN MODAL (unchanged) */}
       <AnimatePresence>
         {activeProject && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black z-[9999] flex flex-col overflow-hidden"
-          >
+          <motion.div className="fixed inset-0 bg-black z-[9999] flex flex-col overflow-hidden">
             <div className="flex justify-between items-center px-8 py-6 text-white">
-              <button
-                onClick={() => setActiveProject(null)}
-                className="uppercase tracking-widest border border-white/40 px-4 py-2 hover:bg-white hover:text-black transition-all"
-              >
+              <button onClick={() => setActiveProject(null)} className="uppercase tracking-widest border border-white/40 px-4 py-2">
                 ← Back
               </button>
-              <button
-                onClick={() => setActiveProject(null)}
-                className="text-2xl hover:scale-110 transition-transform"
-              >
-                ⤡
-              </button>
             </div>
 
-            <div
-              ref={scrollRef}
-              className="flex flex-1 overflow-x-auto snap-x snap-mandatory scroll-smooth"
-            >
+            <div ref={scrollRef} className="flex flex-1 overflow-x-auto snap-x snap-mandatory scroll-smooth">
               {activeProject.imageUrls.map((img, i) => (
-                <div
-                  key={i}
-                  className="min-w-full flex items-center justify-center snap-center"
-                >
-                  <img
-                    src={img}
-                    alt=""
-                    className="max-h-[85vh] max-w-[85vw] object-contain"
-                  />
+                <div key={i} className="min-w-full flex items-center justify-center snap-center">
+                  <img src={img} className="max-h-[85vh] max-w-[85vw] object-contain"/>
                 </div>
               ))}
+
+              {activeProject.videoUrl && (
+                <div className="min-w-full flex items-center justify-center snap-center bg-black">
+                  <iframe
+                    src={activeProject.videoUrl}
+                    className="w-[85vw] h-[85vh]"
+                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </div>
+              )}
             </div>
 
-            <button
-              onClick={scrollPrev}
-              className="absolute left-8 top-1/2 -translate-y-1/2 text-white text-5xl"
-            >
-              ‹
-            </button>
-
-            <button
-              onClick={scrollNext}
-              className="absolute right-8 top-1/2 -translate-y-1/2 text-white text-5xl"
-            >
-              ›
-            </button>
+            <button onClick={scrollPrev} className="absolute left-8 top-1/2 -translate-y-1/2 text-white text-5xl">‹</button>
+            <button onClick={scrollNext} className="absolute right-8 top-1/2 -translate-y-1/2 text-white text-5xl">›</button>
           </motion.div>
         )}
       </AnimatePresence>
-
     </section>
   );
 };

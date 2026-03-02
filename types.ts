@@ -1,13 +1,12 @@
-
-// Fixed: Added React import to provide access to the React namespace for React.ReactNode
 import React from 'react';
 
 export interface Project {
   id: string;
   title: string;
   category: string;
-  imageUrls: string[]; // Changed to array for gallery support
+  imageUrls: string[];
   description: string;
+  videoUrl?: string; // ✅ Added optional video support
 }
 
 export interface Service {
