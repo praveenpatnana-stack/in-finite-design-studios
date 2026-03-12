@@ -70,7 +70,8 @@ const PROJECTS: Project[] = [
     title: "Urban International School",
     category: "Institutional",
     imageUrls: [p31, p32, p33],
-    videoUrl: "https://www.youtube.com/embed/Wg1u9jHF8wA",
+    videoUrl:
+      "https://www.youtube-nocookie.com/embed/Wg1u9jHF8wA?rel=0&modestbranding=1&controls=1&iv_load_policy=3",
     description:
       "A dynamic educational campus fostering innovation and holistic development within an inspiring architectural setting.",
   },
@@ -105,6 +106,8 @@ const Projects: React.FC<ProjectsProps> = ({ setModalOpen }) => {
   const [activeProject, setActiveProject] = useState<Project | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
 
+  const [visibleHints, setVisibleHints] = useState<{[key:string]:boolean}>({});
+
   useEffect(() => {
     if (activeProject) {
       document.body.style.overflow = "hidden";
@@ -123,9 +126,18 @@ const Projects: React.FC<ProjectsProps> = ({ setModalOpen }) => {
     scrollRef.current?.scrollBy({ left: -window.innerWidth, behavior: "smooth" });
   };
 
+  const showHint = (id: string) => {
+    setVisibleHints(prev => ({ ...prev, [id]: true }));
+
+    setTimeout(() => {
+      setVisibleHints(prev => ({ ...prev, [id]: false }));
+    }, 3000);
+  };
+
   return (
     <section id="work" className="py-32 px-8 bg-transparent">
       <div className="max-w-7xl mx-auto">
+
         <div className="flex flex-col mb-20">
           <h2 className="text-4xl md:text-6xl font-serif">Works</h2>
           <div className="w-24 h-[1px] bg-[#A4F142]/40 mt-4" />
@@ -133,11 +145,32 @@ const Projects: React.FC<ProjectsProps> = ({ setModalOpen }) => {
 
         <div className="grid grid-cols-1 gap-24">
           {PROJECTS.map((project) => (
-            <motion.div key={project.id} initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+            <motion.div
+              key={project.id}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              onViewportEnter={() => showHint(project.id)}
+            >
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
 
                 <div className="lg:col-span-8 relative">
                   <div className={`relative rounded-xl border overflow-hidden ${isDark ? "bg-white/5 border-white/5" : "bg-stone-200 border-stone-200 shadow-sm"}`}>
+
+                    {/* SWIPE HINT */}
+                    <AnimatePresence>
+                      {visibleHints[project.id] && (
+                        <motion.div
+                          initial={{ opacity: 0, x: 40 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          exit={{ opacity: 0 }}
+                          transition={{ duration: 1 }}
+                          className="absolute top-4 left-1/2 -translate-x-1/2 z-30 text-white text-sm bg-black/60 px-4 py-1 rounded-full pointer-events-none"
+                        >
+                          ← Swipe
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
 
                     <button
                       onClick={() => setActiveProject(project)}
@@ -159,6 +192,8 @@ const Projects: React.FC<ProjectsProps> = ({ setModalOpen }) => {
                           <iframe
                             src={project.videoUrl}
                             className="w-full h-full"
+                            title="Project Video"
+                            frameBorder="0"
                             allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowFullScreen
                           />
@@ -201,6 +236,7 @@ const Projects: React.FC<ProjectsProps> = ({ setModalOpen }) => {
             </div>
 
             <div ref={scrollRef} className="flex flex-1 overflow-x-auto snap-x snap-mandatory scroll-smooth">
+
               {activeProject.imageUrls.map((img, i) => (
                 <div key={i} className="min-w-full flex items-center justify-center snap-center">
                   <img src={img} className="max-h-[85vh] max-w-[85vw] object-contain"/>
@@ -212,11 +248,14 @@ const Projects: React.FC<ProjectsProps> = ({ setModalOpen }) => {
                   <iframe
                     src={activeProject.videoUrl}
                     className="w-[85vw] h-[85vh]"
+                    title="Project Video Fullscreen"
+                    frameBorder="0"
                     allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                   />
                 </div>
               )}
+
             </div>
 
             <button onClick={scrollPrev} className="absolute left-8 top-1/2 -translate-y-1/2 text-white text-5xl">‹</button>
