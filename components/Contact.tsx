@@ -118,7 +118,7 @@ const Contact: React.FC = () => {
                         : 'hover:text-stone-900'
                     }`}
                   >
-                    {email}
+                    {email1}
                   </a>
                    <a
                     href={`mailto:${email2}`}
@@ -128,7 +128,7 @@ const Contact: React.FC = () => {
                         : 'hover:text-stone-900'
                     }`}
                   >
-                    {email}
+                    {email2}
                   </a>
                   
 
