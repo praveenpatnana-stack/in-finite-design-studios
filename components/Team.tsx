@@ -7,9 +7,9 @@ const TEAM: TeamMember[] = [
   {
     id: '1',
     name: 'Naresh Potnuru',
-    role: ' Prinicpal architect partner 
-            Phone no : +91-8800688691 
-            Gmail : potnurunaresh1988@gmail.com',
+    role: ' Prinicpal architect partner',
+    Phone: '+91-8800688691', 
+    Gmail: 'potnurunaresh1988@gmail.com',
     imageUrl: '/collective/team/naresh-potnuru.jpeg',
     bio: 'Shaping spaces with vision, precision, and purpose — blending timeless design with innovative thinking.'
   },
