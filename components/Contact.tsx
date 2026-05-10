@@ -5,7 +5,9 @@ const Contact: React.FC = () => {
   const { isDark } = useContext(ThemeContext);
 
   const mapUrl = "https://maps.app.goo.gl/DZ8HHCYwHVhaiiEr9?g_st=aw";
-  const email = "infinitedesignstudio9@gmail.com";
+  const email2 = "infinitedesignstudio9@gmail.com";
+  const email1 = "potnurunaresh1988@gmail.com";
+
 
   // WhatsApp numbers (internal format - NO + or -)
   const whatsapp1 = "918800600691";
@@ -109,7 +111,7 @@ const Contact: React.FC = () => {
 
                   {/* EMAIL */}
                   <a
-                    href={`mailto:${email}`}
+                    href={`mailto:${email1}`}
                     className={`hover:opacity-100 transition-opacity ${
                       isDark
                         ? 'hover:text-[#A4F142]'
@@ -118,6 +120,17 @@ const Contact: React.FC = () => {
                   >
                     {email}
                   </a>
+                   <a
+                    href={`mailto:${email2}`}
+                    className={`hover:opacity-100 transition-opacity ${
+                      isDark
+                        ? 'hover:text-[#A4F142]'
+                        : 'hover:text-stone-900'
+                    }`}
+                  >
+                    {email}
+                  </a>
+                  
 
                   {/* WHATSAPP NUMBER 1 */}
                   <a
