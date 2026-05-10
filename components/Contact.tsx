@@ -130,7 +130,7 @@ const Contact: React.FC = () => {
                         : 'hover:text-stone-900'
                     }`}
                   >
-                    +91-9010070006
+                    +91-8800688691
                   </a>
 
                   {/* WHATSAPP NUMBER 2 */}
@@ -144,7 +144,7 @@ const Contact: React.FC = () => {
                         : 'hover:text-stone-900'
                     }`}
                   >
-                    +91-8800688691
+                    +91-9010070006
                   </a>
 
                 </div>
