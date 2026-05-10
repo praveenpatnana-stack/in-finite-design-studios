@@ -8,8 +8,8 @@ const TEAM: TeamMember[] = [
     id: '1',
     name: 'Naresh Potnuru',
     role: ' Prinicpal architect partner',
-    Phone: '+91-8800688691', 
-    Gmail: 'potnurunaresh1988@gmail.com',
+    Phone: 'Phone : +91-8800688691', 
+    Gmail: 'Gmail : potnurunaresh1988@gmail.com',
     imageUrl: '/collective/team/naresh-potnuru.jpeg',
     bio: 'Shaping spaces with vision, precision, and purpose — blending timeless design with innovative thinking.'
   },
@@ -74,10 +74,11 @@ const Team: React.FC = () => {
               <p className={`text-xs uppercase tracking-[0.2em] font-bold mb-4 ${isDark ? 'text-[#A4F142]' : 'text-stone-900'}`}>
                 {member.role}
               </p>
-              <p className={`text-xs uppercase tracking-[0.2em] font-bold mb-4 ${isDark ? 'text-[#A4F142]' : 'text-stone-900'}`}>
+
+              <p className={`text-sm font-light leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${isDark ? 'text-white/60' : 'text-stone-900/70'}`}>
                 {member.Phone}
               </p>
-              <p className={`text-xs uppercase tracking-[0.2em] font-bold mb-4 ${isDark ? 'text-[#A4F142]' : 'text-stone-900'}`}>
+              <p className={`text-sm font-light leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${isDark ? 'text-white/60' : 'text-stone-900/70'}`}>
                 {member.Gmail}
               </p>
               <p className={`text-sm font-light leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${isDark ? 'text-white/60' : 'text-stone-900/70'}`}>
