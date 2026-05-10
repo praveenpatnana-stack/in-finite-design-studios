@@ -8,8 +8,8 @@ const Contact: React.FC = () => {
   const email = "infinitedesignstudio9@gmail.com";
 
   // WhatsApp numbers (internal format - NO + or -)
-  const whatsapp1 = "919010070006";
-  const whatsapp2 = "918800688691";
+  const whatsapp1 = "918800600691";
+  const whatsapp2 = "919010070006";
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
