@@ -29,6 +29,7 @@ const Hero: React.FC = () => {
           transition={{ delay: 1.2, duration: 1 }}
           className={`mt-8 text-sm md:text-xl font-light uppercase tracking-[1em] transition-colors duration-500 ${isDark ? 'text-[#A4F142]' : 'text-stone-900'}`}
         >
+          DESIGN STUDIO
           Sculpting Space & Time
         </motion.p>
       </motion.div>
