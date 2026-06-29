@@ -22,14 +22,20 @@ const Hero: React.FC = () => {
             In Finite.
           </motion.h1>
         </div>
-
-        <motion.p 
+         <motion.p 
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.6 }}
           transition={{ delay: 1.2, duration: 1 }}
           className={`mt-8 text-sm md:text-xl font-light uppercase tracking-[1em] transition-colors duration-500 ${isDark ? 'text-[#A4F142]' : 'text-stone-900'}`}
         >
           DESIGN STUDIO
+        </motion.p>
+        <motion.p 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.6 }}
+          transition={{ delay: 1.2, duration: 1 }}
+          className={`mt-8 text-sm md:text-xl font-light uppercase tracking-[1em] transition-colors duration-500 ${isDark ? 'text-[#A4F142]' : 'text-stone-900'}`}
+        >
           Sculpting Space & Time
         </motion.p>
       </motion.div>
