@@ -6,9 +6,9 @@ import { TeamMember } from '../types';
 const TEAM: TeamMember[] = [
    {
     id: '1',
-    name: 'Keerthi Botu',
+    name: 'Keerti Botu',
     role: ' Human Resources (HR) ',
-    imageUrl: '/collective/team/keerthi botu.jpeg',
+    imageUrl: '/collective/team/keerti-botu.jpeg',
     bio: 'Dedicated HR Executive passionate about connecting talent with opportunity and fostering a positive, people-first workplace.'
   },
   {
