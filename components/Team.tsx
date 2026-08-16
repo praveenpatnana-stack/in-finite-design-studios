@@ -26,7 +26,7 @@ const TEAM: TeamMember[] = [
     role: 'Junior Architect',
     imageUrl: '/collective/team/mythily-sreerangam.jpeg',
     bio: 'Designing with passion, learning with purpose, and building for the future.'
-  }
+  },
    {
     id: '4',
     name: 'Keerti Botu',
