@@ -3,16 +3,9 @@ import { motion } from 'framer-motion';
 import { ThemeContext } from '../App';
 import { TeamMember } from '../types';
 
-const TEAM: TeamMember[] = [
-   {
-    id: '1',
-    name: 'Keerti Botu',
-    role: ' Human Resources (HR) ',
-    imageUrl: '/collective/team/keerti-botu.jpeg',
-    bio: 'Dedicated HR Executive passionate about connecting talent with opportunity and fostering a positive, people-first workplace.'
-  },
+const TEAM: TeamMember[] = [ 
   {
-    id: '2',
+    id: '1',
     name: 'Naresh Potnuru',
     role: ' Prinicpal architect partner',
     Phone: 'Phone : +91-8800688691', 
@@ -21,26 +14,26 @@ const TEAM: TeamMember[] = [
     bio: 'Shaping spaces with vision, precision, and purpose — blending timeless design with innovative thinking.'
   },
   {
-    id: '3',
+    id: '2',
     name: 'Gowtam Belisonty',
     role: ' Prinicpal architect partner',
     imageUrl: '/collective/team/gowtam-belisonty.jpeg',
     bio: 'Leading with vision and expertise, transforming complex ideas into enduring, functional designs.'
   },
   {
-    id: '4',
-    name: 'Nikita Bhattara',
-    role: 'Junior Architect',
-    imageUrl: '/collective/team/nikita-bhattara.jpeg',
-    bio: 'Shaping tomorrow’s skylines with fresh vision and precise detail — one blueprint at a time.'
-  },
-  {
-    id: '5',
+    id: '3',
     name: 'Mythily Sreerangam',
     role: 'Junior Architect',
     imageUrl: '/collective/team/mythily-sreerangam.jpeg',
     bio: 'Designing with passion, learning with purpose, and building for the future.'
   }
+   {
+    id: '4',
+    name: 'Keerti Botu',
+    role: ' Human Resources (HR) ',
+    imageUrl: '/collective/team/keerti-botu.jpeg',
+    bio: 'Dedicated HR Executive passionate about connecting talent with opportunity and fostering a positive, people-first workplace.'
+  },
 ];
 
 const Team: React.FC = () => {
